@@ -1,24 +1,26 @@
-# README
+### Ruby Version
+```
+rvm use 2.6.3
+```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+###Create Database
+```
+connect = psql postgres
+quit =\q
+create usre = CREATE USER graphqlTodo;
+create databse CREATE DATABASE logistic_dev;
+CREATE DATABASE graphql_todo_development OWNER graphqlTodo;
 
-* Ruby version
+GRANT ALL PRIVILEGES ON DATABASE graphql_todo_development to graphqlTodo; 
 
-* System dependencies
+permission  
+alter role graphqlTodo with superuser;  
+ALTER DATABASE graphql_todo_development OWNER TO graphqlTodo;  
+```
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Start Server
+```
+rails s
+```
