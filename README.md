@@ -24,3 +24,72 @@ ALTER DATABASE graphql_todo_development OWNER TO graphqlTodo;
 ```
 rails s
 ```
+
+
+### Graphql Sample Query and Mutation
+
+```
+  #list all todos
+  query todos {
+     todos: todos(
+       isDeleted: true
+     ){
+       id
+       title
+       description
+     }
+   }
+
+ #get 1 todo
+ query todo {
+    todo: todo(id: 1){
+      id
+      title
+      description
+    }
+  }
+
+  #create todo
+  mutation createTodo {
+ 		createTodo(	input: {
+      title: "hello"
+      description: "description sample"
+    }){
+      todo {
+        id
+        title
+        description
+      }
+    }
+  }
+
+  #update todo
+  mutation updateTodo {
+      updateTodo(input:{
+        id: 2
+        title: "new title yes its working"
+        description: "new description"
+      }){
+        todo {
+          id
+          title
+          description
+        }
+      }
+    }
+
+   #soft delete
+   mutation deleteTodo {
+      deleteTodo(input:{
+        id: 4
+      }){
+        todo {
+          id
+          title
+          description
+          isDeleted
+        }
+      }
+    }
+```
+

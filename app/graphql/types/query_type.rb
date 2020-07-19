@@ -1,10 +1,12 @@
 module Types
   class QueryType < Types::BaseObject
 
-     field :todos, [Types::TodoType], null: false
+     field :todos, [Types::TodoType], null: false do
+       argument :isDeleted, Boolean, required: true
+     end
 
-     def todos
-       Todo.all
+     def todos(isDeleted: false)
+       Todo.where(is_deleted: isDeleted);
      end
 
       field :todo, Types::TodoType, null: false do

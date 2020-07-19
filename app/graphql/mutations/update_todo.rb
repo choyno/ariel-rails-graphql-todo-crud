@@ -1,17 +1,16 @@
 module Mutations
-  class CreateTodo < BaseMutation
+  class UpdateTodo < BaseMutation
 
     field :todo, Types::TodoType, null: false
 
+    argument :id, ID, required: true
     argument :title, String, required: true
     argument :description, String, required: true
 
-
-    def resolve(title: nil, description: nil)
-       todo =  Todo.new
+    def resolve(id: nil, title: nil, description: nil)
+       todo =  Todo.find(id)
        todo.title = title
        todo.description = description
-       todo.is_deleted = false
 
        if todo.save
          {
@@ -25,6 +24,5 @@ module Mutations
          }
        end
     end
-
   end
 end
